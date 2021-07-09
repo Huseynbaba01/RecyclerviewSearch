@@ -25,6 +25,7 @@ class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.UserViewHold
 	fun setRecyclerListData(data: List<User>){
 		Log.d("MyTestHere","Called")
 		items = data
+		notifyDataSetChanged()
 	}
 
 	override fun onBindViewHolder(holder: RecyclerViewAdapter.UserViewHolder, position: Int) {
