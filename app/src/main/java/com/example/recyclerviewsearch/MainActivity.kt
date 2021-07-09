@@ -1,6 +1,7 @@
 package com.example.recyclerviewsearch
 
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +18,7 @@ import io.objectbox.reactive.DataSubscription
 import kotlin.random.Random
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 	private lateinit var adapterForSpinner: ArrayAdapter<CharSequence>
 	private lateinit var spinner: Spinner
 	private lateinit var recyclerView: RecyclerView
@@ -41,6 +42,56 @@ class MainActivity : AppCompatActivity() {
 	private fun buttonsSetOnClickListeners() {
 		floatingActionButton.setOnClickListener {
 			box.put(generateUser())
+		}
+		spinner.onItemSelectedListener = object: AdapterView.OnItemClickListener,
+			AdapterView.OnItemSelectedListener {
+			override fun onItemClick(
+				parent: AdapterView<*>?,
+				view: View?,
+				position: Int,
+				id: Long
+			) {
+				val list = box.all
+				if(position == 0) {
+					list.sortBy {
+						it.name
+					}
+				}
+				else{
+					list.sortByDescending {
+						it.name
+					}
+				}
+//				Toast.makeText(this@MainActivity,list[0].name,Toast.LENGTH_SHORT).show()
+				adapter.setRecyclerListData(list)
+			}
+
+			override fun onItemSelected(
+				parent: AdapterView<*>?,
+				view: View?,
+				position: Int,
+				id: Long
+			) {
+				val list = box.all
+				if(position == 0) {
+					list.sortBy {
+						it.name
+					}
+				}
+				else{
+					list.sortByDescending {
+						it.name
+					}
+				}
+//				Toast.makeText(this@MainActivity,list[0].name,Toast.LENGTH_SHORT).show()
+
+				adapter.setRecyclerListData(list)
+			}
+
+			override fun onNothingSelected(parent: AdapterView<*>?) {
+				Toast.makeText(this@MainActivity,"Nothing selected",Toast.LENGTH_SHORT).show()
+			}
+
 		}
 
 		/*searchView.setOnQueryTextListener{
@@ -108,4 +159,23 @@ class MainActivity : AppCompatActivity() {
 		id++
 		return User(0, "User$id",random % 100, gender)
 	}
+
+//	override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//		val list = box.all
+//		if(position == 0){
+//			list.sortBy {
+//				it.name
+//			}
+//
+//		}
+//		else{
+//			list.sortByDescending {
+//				it.name
+//			}
+//		}
+//		box.put(list)
+//	}
+//
+//	override fun onNothingSelected(parent: AdapterView<*>?) {
+//	}
 }
