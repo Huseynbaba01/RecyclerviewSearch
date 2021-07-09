@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RecyclerviewSearch</string>
+    <string name="anything">anything</string>
+    <string-array name="names">
+        <item>down</item>
+        <item>up</item>
+    </string-array>
+</resources>
