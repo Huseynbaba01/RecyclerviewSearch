@@ -2,7 +2,8 @@
     <string name="app_name">RecyclerviewSearch</string>
     <string name="anything">anything</string>
     <string-array name="names">
-        <item>down</item>
+        <item>none</item>
         <item>up</item>
+        <item>down</item>
     </string-array>
 </resources>

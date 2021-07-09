@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:paddingTop="12dp"
     android:paddingBottom="12dp"
+    android:background="@color/teal_700"
     android:layout_margin="12dp"
     android:layout_height="wrap_content">
     <TextView
@@ -22,8 +23,9 @@
         android:layout_width="match_parent"
         android:layout_weight="0.3"
         android:layout_height="wrap_content"
-        android:textColor="@color/teal_700"
+        android:textColor="#FFFFFF"
         android:text="Age"
+
         android:textSize="20sp"
         android:textStyle="bold"
         />

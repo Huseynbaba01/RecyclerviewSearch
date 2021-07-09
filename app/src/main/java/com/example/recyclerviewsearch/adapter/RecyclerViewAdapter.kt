@@ -1,5 +1,6 @@
 package com.example.recyclerviewsearch.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class RecyclerViewAdapter: RecyclerView.Adapter<RecyclerViewAdapter.UserViewHold
 	}
 
 	fun setRecyclerListData(data: List<User>){
+		Log.d("MyTestHere","Called")
 		items = data
 	}
 

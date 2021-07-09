@@ -51,19 +51,24 @@ class MainActivity : AppCompatActivity(){
 				position: Int,
 				id: Long
 			) {
-				val list = box.all
-				if(position == 0) {
-					list.sortBy {
-						it.name
-					}
-				}
-				else{
-					list.sortByDescending {
-						it.name
-					}
-				}
-//				Toast.makeText(this@MainActivity,list[0].name,Toast.LENGTH_SHORT).show()
-				adapter.setRecyclerListData(list)
+//				val list = box.all
+//				if(position == 1){
+//					list.sortBy {
+//						it.id
+//					}
+//				}
+//				else if(position == 1) {
+//					list.sortBy {
+//						it.name
+//					}
+//				}
+//				else{
+//					list.sortByDescending {
+//						it.name
+//					}
+//				}
+////				Toast.makeText(this@MainActivity,list[0].name,Toast.LENGTH_SHORT).show()
+//				adapter.setRecyclerListData(list)
 			}
 
 			override fun onItemSelected(
@@ -73,7 +78,12 @@ class MainActivity : AppCompatActivity(){
 				id: Long
 			) {
 				val list = box.all
-				if(position == 0) {
+				if(position == 0){
+					list.sortBy {
+						it.id
+					}
+				}
+				else if(position == 1) {
 					list.sortBy {
 						it.name
 					}
@@ -83,9 +93,10 @@ class MainActivity : AppCompatActivity(){
 						it.name
 					}
 				}
-//				Toast.makeText(this@MainActivity,list[0].name,Toast.LENGTH_SHORT).show()
+//				Toast.makeText(this@MainActivity,list[0]?.name,Toast.LENGTH_SHORT).show()
 
 				adapter.setRecyclerListData(list)
+				recyclerView.adapter = adapter
 			}
 
 			override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -106,6 +117,7 @@ class MainActivity : AppCompatActivity(){
 			override fun onQueryTextChange(newText: String): Boolean {
 				val list = box.query().contains(User_.name,newText).build().find()
 				adapter.setRecyclerListData(list)
+				recyclerView.adapter = adapter
 				if(list.size == 0){
 					Toast.makeText(this@MainActivity,"No matching items found",Toast.LENGTH_SHORT).show()
 				}
@@ -157,7 +169,7 @@ class MainActivity : AppCompatActivity(){
 			}
 		}
 		id++
-		return User(0, "User$id",random % 100, gender)
+		return User(0, "User${box.all.size+1}",random % 100, gender)
 	}
 
 //	override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
